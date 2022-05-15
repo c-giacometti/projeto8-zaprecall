@@ -3,10 +3,10 @@ import Header from "./header";
 import RenderZap from "./renderzap";
 import Footer from "./footer";
 
-export default function Recall(){
+export default function Recall(props){
 
     return (
-        <div className='recall'>
+        <div className={props.appear}>
             <Header />
             <RenderZap />
             <Footer />

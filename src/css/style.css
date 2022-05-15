@@ -1,9 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #fb6b6b;
 }
 
 .background {
-    height: 667px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,10 +28,12 @@ body {
     width: 250px;
     height: 50px;
     background-color: white;
+    font-size: 18px;
     color: #fb6b6b;
     border: 1px #fb6b6b;
     border-radius: 5px;
     box-shadow: 0px 5px 5px 0px rgb(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .hidden {
@@ -38,7 +44,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+    margin: 40px 0px 30px 0px;
 }
 
 .header img {
@@ -58,6 +64,7 @@ body {
 
 .footer {
     height: 70px;
+    width: 100%;
     background-color: white;
     font-size: 18px;
     color: #333333;
@@ -66,6 +73,9 @@ body {
     align-items: center;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     margin-top: 25px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
 }
 
 .deck {
@@ -76,13 +86,101 @@ body {
 }
 
 .card {
-    height: 65px;
-    width: 90%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card ion-icon {
+    font-size: 40px;
+    --ionicon-stroke-width: 40px;
+}
+
+.closed {
+    width: inherit;
     background-color: white;
-    margin-bottom: 25px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
+}
+
+.open {
+    height: 200px;
+    width: inherit;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFD4;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.open span {
+    height: 180px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.open div {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.answer {
+    height: 200px;
+    width: inherit;
+    background-color: #FFFFD4;
+    padding: 20px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.answer span {
+    height: 100px;
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+}
+
+.choices {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.choices span{
+    height: 40px;
+    width: 85px;
+    font-size: 12px;
+    color: white;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+.fail {
+    background-color: #FF3030;
+    margin-right: 10px;
+}
+
+.almost {
+    background-color: #FF922E;
+    margin-right: 10px;
+}
+
+.success{
+    background-color: #2FBE34;
 }
