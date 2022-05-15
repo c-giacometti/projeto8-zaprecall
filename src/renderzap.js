@@ -26,14 +26,16 @@ function ZapCard(props){
     const [classClosed, setClassClosed] = React.useState('closed');
     const [showQuestion, setShowQuestion] = React.useState('hidden');
     const [showAnswer, setShowAnswer] = React.useState('hidden');
+    const [icon, setIcon] = React.useState("play-outline");
 
     return (
         <div className='card'>
             <CardClosed classClosed={classClosed} setClassClosed={setClassClosed} setShowQuestion={setShowQuestion} 
-            index={props.index}/>
+            index={props.index} icon={icon} />
             <CardOpen showQuestion={showQuestion} setShowQuestion={setShowQuestion} setShowAnswer={setShowAnswer} 
             question={props.question} />
-            <CardAnswer showAnswer={showAnswer} answer={props.answer}/>
+            <CardAnswer showAnswer={showAnswer} setShowAnswer={setShowAnswer} setClassClosed={setClassClosed} 
+            answer={props.answer} setIcon={setIcon} />
         </div>
     );
 
@@ -44,7 +46,7 @@ function CardClosed(props){
     return (
         <div className={props.classClosed} onClick={TurnCard}>
             <span>Pergunta {props.index + 1}</span>
-            <ion-icon name="play-outline" ></ion-icon>
+            <ion-icon name={props.icon}></ion-icon>
         </div>
     );
 
@@ -77,11 +79,22 @@ function CardAnswer(props){
         <div className={props.showAnswer}>
             <span>{props.answer}</span>
             <div className="choices">
-                <span className="fail">Não lembrei</span>
-                <span className="almost">Quase não lembrei</span>
-                <span className="success">Zap!</span>
+                <span className="fail" onClick={() => answerClicked('failed')}>Não lembrei</span>
+                <span className="almost" onClick={() => answerClicked('almostGotIt')}>Quase não lembrei</span>
+                <span className="success" onClick={() => answerClicked('succeeded')}>Zap!</span>
             </div>
         </div>
     );
-    
+
+    function answerClicked(result){
+
+        props.setClassClosed('closed ' + result);
+        props.setShowAnswer('hidden');
+
+        if(result === 'failed') {props.setIcon('close-circle');}
+        else if(result === 'almostGotIt') {props.setIcon('help-circle');}
+        else if(result === 'succeeded') {props.setIcon('checkmark-circle');}
+        
+    }
+
 }

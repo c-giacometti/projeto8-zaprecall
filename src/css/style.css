@@ -102,6 +102,7 @@ body {
     width: inherit;
     background-color: white;
     padding: 20px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -183,4 +184,34 @@ body {
 
 .success{
     background-color: #2FBE34;
+}
+
+.failed span {
+    color: #FF3030;
+    text-decoration: line-through;
+}
+
+.almostGotIt span {
+    color: #FF922E;
+    text-decoration: line-through;
+}
+
+.succeeded span {
+    color: #2FBE34;
+    text-decoration: line-through;
+}
+
+.failed ion-icon {
+    color: #FF3030;
+    font-size: 30px;
+}
+
+.almostGotIt ion-icon {
+    color: #FF922E;
+    font-size: 30px;
+}
+
+.succeeded ion-icon {
+    color: #2FBE34;
+    font-size: 30px;
 }
