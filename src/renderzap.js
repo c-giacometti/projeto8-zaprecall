@@ -1,7 +1,7 @@
 import React from 'react';
 import turnSymbol from './assets/setinha.png';
 
-export default function RenderZap(){
+export default function RenderZap(props){
 
     const zapDeck = [
         {question: 'O que é JSX?', answer: 'Uma extensão de linguagem do JavaScript'},
@@ -14,11 +14,15 @@ export default function RenderZap(){
         {question: 'Usamos estado (state) para __', answer: 'Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente'},
     ];
 
+    props.setNumberOfQuestions(zapDeck.length);
+
     return (
         <div className="deck">
-            {zapDeck.map((render, index) => (<ZapCard question={render.question} answer={render.answer} key={index} index={index}/>))}
+            {zapDeck.map((render, index) => (<ZapCard question={render.question} answer={render.answer} key={index} index={index} 
+            answersArray={props.answersArray} setAnswersArray={props.setAnswersArray} />))}
         </div>
     );
+
 }
 
 function ZapCard(props){
@@ -35,13 +39,18 @@ function ZapCard(props){
             <CardOpen showQuestion={showQuestion} setShowQuestion={setShowQuestion} setShowAnswer={setShowAnswer} 
             question={props.question} />
             <CardAnswer showAnswer={showAnswer} setShowAnswer={setShowAnswer} setClassClosed={setClassClosed} 
-            answer={props.answer} setIcon={setIcon} />
+            answer={props.answer} setIcon={setIcon} setAnswersArray={props.setAnswersArray} answersArray={props.answersArray} />
         </div>
     );
 
 }
 
 function CardClosed(props){
+
+    function TurnCard(){
+        props.setShowQuestion('open');
+        props.setClassClosed('hidden');
+    }
 
     return (
         <div className={props.classClosed} onClick={TurnCard}>
@@ -50,14 +59,14 @@ function CardClosed(props){
         </div>
     );
 
-    function TurnCard(){
-        props.setShowQuestion('open');
-        props.setClassClosed('hidden');
-    }
-
 }
 
 function CardOpen(props){
+
+    function answerAppear(){
+        props.setShowQuestion('hidden');
+        props.setShowAnswer('answer');
+    }
 
     return (
         <div className={props.showQuestion}>
@@ -66,14 +75,24 @@ function CardOpen(props){
         </div>
     );
 
-    function answerAppear(){
-        props.setShowQuestion('hidden');
-        props.setShowAnswer('answer');
-    }
-
 }
 
 function CardAnswer(props){
+
+    function answerClicked(result){
+
+        props.setClassClosed('closed ' + result);
+        props.setShowAnswer('hidden');
+
+        if(result === 'failed') {props.setIcon('close-circle');}
+        else if(result === 'almostGotIt') {props.setIcon('help-circle');}
+        else if(result === 'succeeded') {props.setIcon('checkmark-circle');}
+
+        let newArray=[...props.answersArray, result];
+        props.setAnswersArray(newArray);
+        console.log(newArray);
+        
+    }
 
     return (
         <div className={props.showAnswer}>
@@ -85,16 +104,5 @@ function CardAnswer(props){
             </div>
         </div>
     );
-
-    function answerClicked(result){
-
-        props.setClassClosed('closed ' + result);
-        props.setShowAnswer('hidden');
-
-        if(result === 'failed') {props.setIcon('close-circle');}
-        else if(result === 'almostGotIt') {props.setIcon('help-circle');}
-        else if(result === 'succeeded') {props.setIcon('checkmark-circle');}
-        
-    }
 
 }

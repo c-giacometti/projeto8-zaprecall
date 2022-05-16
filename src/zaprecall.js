@@ -8,7 +8,7 @@ export default function ZapRecall(){
 
     return (
         <>
-            <FirstPage appear={callZap} setAppear={setCallZap}/>
+            <FirstPage setAppear={setCallZap}/>
             <Recall appear={callZap}/>
         </>
     );

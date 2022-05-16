@@ -5,16 +5,16 @@ export default function FirstPage(props){
 
     const [display, setDisplay] = React.useState("background");
 
-    function clicked(setAppear){
+    function clicked(){
         setDisplay("hidden");
-        setAppear("recall");
+        props.setAppear("recall");
     }
 
     return (
         <div className={display}>
             <img src={logo} alt="logo"/>
             <h1>ZapRecall</h1>
-            <button onClick={() => clicked(props.setAppear)}>Iniciar Recall!</button>
+            <button onClick={clicked}>Iniciar Recall!</button>
         </div>
     );
 
