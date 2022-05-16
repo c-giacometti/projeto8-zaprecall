@@ -1,15 +1,14 @@
+import SadFace from './assets/sad.png';
+import HappyFace from './assets/party.png';
+
 export default function Footer(props){
 
-    let endOfGame = false;
     let messageType = 'Congratz';
     const numberOfAnswers = (props.answersArray).length;
 
-    if(numberOfAnswers === props.numberOfQuestions) {endOfGame = true;}
     if(props.answersArray.includes('failed')) {messageType='Putz';}
 
-    endOfGame ? renderMessage() : renderFooter();
-
-    function renderMessage(){
+    if(numberOfAnswers === props.numberOfQuestions) {
         return (
             <div className='footer'>
                 <Message messageType={messageType} />
@@ -19,14 +18,12 @@ export default function Footer(props){
         );
     }
 
-    function renderFooter(){
-        return (
-            <div className='footer'>
-                <div>{numberOfAnswers}/{props.numberOfQuestions} CONCLUÍDOS</div>
-                <div className='icons'>{props.answersArray.map((renderIcons, index) => <Icon answer={renderIcons} key={index} />)}</div>
-            </div>
-        );
-    }
+    return (
+        <div className='footer'>
+            <div>{numberOfAnswers}/{props.numberOfQuestions} CONCLUÍDOS</div>
+            <div className='icons'>{props.answersArray.map((renderIcons, index) => <Icon answer={renderIcons} key={index} />)}</div>
+        </div>
+    );
 
 }
 
@@ -62,13 +59,29 @@ function Message(props){
 
     if(props.messageType === 'Putz'){
         return (
-
+            <>
+                <div className='messageTitle'>
+                    <img src={SadFace} alt='rostinho titi :(' />
+                    <span>Putz...</span>
+                </div>
+                <div className='messageContent'>
+                    Ainda faltam alguns... Mas não desanime!
+                </div>
+            </>
         );
     }
 
-    else if(props.messageType === 'COngratz'){
+    else if(props.messageType === 'Congratz'){
         return (
-
+            <>
+                <div className='messageTitle'>
+                    <img src={HappyFace} alt='rostinho feliz :)'/>
+                    <span>Parabéns!</span>
+                </div>
+                <div className='messageContent'>
+                    Você não esqueceu de nenhum flashcard!
+                </div>
+            </>
         );
     }
 }

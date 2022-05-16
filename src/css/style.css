@@ -63,7 +63,7 @@ body {
 }
 
 .footer {
-    height: 70px;
+    min-height: 70px;
     width: 100%;
     background-color: white;
     font-size: 18px;
@@ -79,6 +79,26 @@ body {
     left: 0px;
 }
 
+.footer div {
+    margin-bottom: 5px;
+}
+
+.messageTitle {
+    font-weight: 700;
+    display: flex;
+    margin: 15px 0px 15px 0px;
+}
+
+.messageTitle img {
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
+
+.messageContent {
+    margin-bottom: 15px;
+}
+
 .deck {
     display: flex;
     flex-direction: column;
@@ -87,7 +107,7 @@ body {
 }
 
 .deck > .card:last-child {
-    margin-bottom: 70px;
+    margin-bottom: 120px;
 }
 
 .card {
@@ -114,6 +134,7 @@ body {
     margin-bottom: 20px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .open {
@@ -138,6 +159,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: right;
+}
+
+.open img {
+    cursor: pointer;
 }
 
 .answer {
@@ -175,6 +200,7 @@ body {
     text-align: center;
     border-radius: 5px;
     margin-top: 25px;
+    cursor: pointer;
 }
 
 .fail {
@@ -219,4 +245,16 @@ body {
 .succeeded ion-icon {
     color: #2FBE34;
     font-size: 30px;
+}
+
+.closed.failed {
+    cursor: default;
+}
+
+.closed.almostGotIt {
+    cursor: default;
+}
+
+.closed.succeeded {
+    cursor: default;
 }
