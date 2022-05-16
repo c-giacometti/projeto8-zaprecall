@@ -16,6 +16,12 @@ export default function RenderZap(props){
 
     props.setNumberOfQuestions(zapDeck.length);
 
+    zapDeck.sort(shuffle);
+
+    function shuffle(){
+        return Math.random() - 0.5;
+    }
+
     return (
         <div className="deck">
             {zapDeck.map((render, index) => (<ZapCard question={render.question} answer={render.answer} key={index} index={index} 
